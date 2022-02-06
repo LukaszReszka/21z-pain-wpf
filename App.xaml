@@ -1,0 +1,26 @@
+﻿<Application x:Class="PAIN21Z_WPF2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PAIN21Z_WPF2"
+             xmlns:vm="clr-namespace:PAIN21Z_WPF2.ViewModels"
+             xmlns:v="clr-namespace:PAIN21Z_WPF2.Views">
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type vm:VehiclesVM}">
+                <v:VehiclesView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type vm:VehicleVM}">
+                <v:VehicleView/>
+            </DataTemplate>
+
+            <Style TargetType="TextBox">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

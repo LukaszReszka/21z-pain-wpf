@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="PAIN21Z_WPF2.Views.VehicleTypePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PAIN21Z_WPF2.Views"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <BitmapImage x:Key="CarImage" UriSource="../Resources/car.png"/>
+        <BitmapImage x:Key="TruckImage" UriSource="../Resources/truck.png"/>
+        <BitmapImage x:Key="MotocycleImage" UriSource="../Resources/motocycle.png"/>
+    </UserControl.Resources>
+    <Grid Grid.Column="2" Grid.RowSpan="6" Height="100" Width="100">
+        <Button Name="vehiclePickerButton" Command="{Binding Path=NextVehTypeCom}" CommandParameter="{Binding RelativeSource={RelativeSource self}, Path=DataContext}">
+            <Image Name="ButtonImage">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Type}" Value="osobowy">
+                                <Setter Property="Source" Value="{StaticResource CarImage}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Type}" Value="ciężarowy">
+                                <Setter Property="Source" Value="{StaticResource TruckImage}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Type}" Value="jednoślad">
+                                <Setter Property="Source" Value="{StaticResource MotocycleImage}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </Button>
+    </Grid>
+</UserControl>

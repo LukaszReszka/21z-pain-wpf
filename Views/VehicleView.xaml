@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="PAIN21Z_WPF2.Views.VehicleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PAIN21Z_WPF2.Views"
+             xmlns:vm="clr-namespace:PAIN21Z_WPF2.ViewModels"
+             mc:Ignorable="d" 
+             MinHeight="347" MinWidth="557">
+    <Grid>
+        <Label Content="Marka: " Margin="84,47,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="Vmax: " Margin="89,101,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="Data produkcji: " Margin="29,151,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="Typ pojazdu: " Margin="45,205,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox Text="{Binding Brand}" TextWrapping="Wrap" Margin="170,45,0,0" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.142,0.478"/>
+        <TextBox TextWrapping="Wrap" Margin="170,99,0,0" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding Path="MaxVelocity" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <vm:VelocityValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <DatePicker SelectedDate="{Binding ProductionDate}" Margin="170,154,0,0" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding Type}" TextWrapping="Wrap" Margin="170,208,0,0" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+        <local:VehicleTypePicker Margin="374,99,87,152" Height="100" Width="100"/>
+        <Button Content="Ok" Command="{Binding Path=OkCom}" CommandParameter="{Binding RelativeSource={RelativeSource self}, Path=DataContext}" Margin="200,276,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" />
+        <Button Content="Anuluj" Command="{Binding Path=CancelCom}" CommandParameter="{Binding RelativeSource={RelativeSource self}, Path=DataContext}" Margin="319,276,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" />
+    </Grid>
+</UserControl>
